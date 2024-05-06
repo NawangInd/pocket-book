@@ -98,8 +98,8 @@ Route::get('/bootstrap-typography', function () {
 
 
 // components
-Route::get('/components-article', function () {
-    return view('pages.components-article', ['type_menu' => 'components']);
+Route::get('/materi', function () {
+    return view('pages.materi', ['type_menu' => 'components']);
 });
 Route::get('/components-avatar', function () {
     return view('pages.components-avatar', ['type_menu' => 'components']);
