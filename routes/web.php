@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/dashboard-general-dashboard');
+Route::redirect('/', '/home');
 
 // Dashboard
-Route::get('/dashboard-general-dashboard', function () {
-    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+Route::get('/home', function () {
+    return view('pages.dashboard', ['type_menu' => 'dashboard']);
 });
 Route::get('/dashboard-ecommerce-dashboard', function () {
     return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
@@ -116,8 +116,8 @@ Route::get('/components-gallery', function () {
 Route::get('/components-hero', function () {
     return view('pages.components-hero', ['type_menu' => 'components']);
 });
-Route::get('/components-multiple-upload', function () {
-    return view('pages.components-multiple-upload', ['type_menu' => 'components']);
+Route::get('/submission', function () {
+    return view('pages.submission', ['type_menu' => 'components']);
 });
 Route::get('/components-pricing', function () {
     return view('pages.components-pricing', ['type_menu' => 'components']);
@@ -231,8 +231,8 @@ Route::get('/features-post-create', function () {
 Route::get('/features-post', function () {
     return view('pages.features-post', ['type_menu' => 'features']);
 });
-Route::get('/features-profile', function () {
-    return view('pages.features-profile', ['type_menu' => 'features']);
+Route::get('/profile', function () {
+    return view('pages.profile', ['type_menu' => 'features']);
 });
 Route::get('/features-settings', function () {
     return view('pages.features-settings', ['type_menu' => 'features']);

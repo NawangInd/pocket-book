@@ -22,7 +22,7 @@
                         <span>Material</span></a>
                 </li>
                 <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-file-pen"></i>
+                    <a class="nav-link" href="{{ url('submission') }}"><i class="fas fa-file-pen"></i>
                         <span>Assignments</span></a>
                 </li>
 
