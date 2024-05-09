@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/home');
+Route::redirect('/', '/login');
 
 // Dashboard
 Route::get('/home', function () {
@@ -23,6 +23,14 @@ Route::get('/dashboard-ecommerce-dashboard', function () {
     return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
 });
 
+// Login 
+Route::get('/login-teacher', function () {
+    return view('pages.login-teacher', ['type_menu' => 'dashboard']);
+})->name('login-teacher');
+
+Route::get('/login-student', function () {
+    return view('pages.login-teacher', ['type_menu' => 'dashboard']);
+})->name('login-student');
 
 // Layout
 Route::get('/layout-default-layout', function () {
@@ -197,8 +205,8 @@ Route::get('/auth-forgot-password', function () {
 Route::get('/auth-login', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
 });
-Route::get('/auth-login2', function () {
-    return view('pages.auth-login2', ['type_menu' => 'auth']);
+Route::get('/login', function () {
+    return view('pages.login', ['type_menu' => 'auth']);
 });
 Route::get('/auth-register', function () {
     return view('pages.auth-register', ['type_menu' => 'auth']);
