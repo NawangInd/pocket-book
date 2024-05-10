@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,13 +25,25 @@ Route::get('/dashboard-ecommerce-dashboard', function () {
 });
 
 // Login 
-Route::get('/login-teacher', function () {
-    return view('pages.login-teacher', ['type_menu' => 'dashboard']);
-})->name('login-teacher');
 
-Route::get('/login-student', function () {
-    return view('pages.login-teacher', ['type_menu' => 'dashboard']);
-})->name('login-student');
+Route::get('/login-student', [LoginController::class, 'index_student'])->name('login-student');
+Route::get('/login-teacher', [LoginController::class, 'index_teacher'])->name('login-teacher');
+
+
+Route::post('/login-action', [LoginController::class, 'login_action']);
+
+// Murid
+Route::middleware(['authMurid'])->prefix('student')->group(function () {
+    Route::get('/home', function () {
+        return view('pages.dashboard', ['type_menu' => 'dashboard']);
+    })->name('home-murid');
+});
+
+Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
+    Route::get('/home', function () {
+        return view('pages.dashboard', ['type_menu' => 'dashboard']);
+    })->name('home-guru');
+});
 
 // Layout
 Route::get('/layout-default-layout', function () {

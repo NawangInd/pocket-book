@@ -35,7 +35,8 @@
                         </div>
 
 
-                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                        <form method="post" action="/login-action" class="needs-validation" novalidate="">
+                            @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1"
