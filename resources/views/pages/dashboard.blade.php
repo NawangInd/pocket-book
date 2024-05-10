@@ -22,7 +22,7 @@
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header">
                         <div class="d-flex flex-column">
-                            <h1>HALO!!!</h1>
+                            <h1>HALO !!!</h1>
                             <p>Yuk kita belajar bersama</p>
                         </div>
                     </div>

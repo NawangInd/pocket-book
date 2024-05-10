@@ -28,6 +28,8 @@ Route::get('/dashboard-ecommerce-dashboard', function () {
 
 Route::get('/login-student', [LoginController::class, 'index_student'])->name('login-student');
 Route::get('/login-teacher', [LoginController::class, 'index_teacher'])->name('login-teacher');
+Route::get('/logout-action', [LoginController::class, 'logout_action']);
+
 
 
 Route::post('/login-action', [LoginController::class, 'login_action']);
