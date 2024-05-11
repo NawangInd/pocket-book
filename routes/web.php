@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MateriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,12 +40,18 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('/home', function () {
         return view('pages.dashboard', ['type_menu' => 'dashboard']);
     })->name('home-murid');
+
+    Route::get('/materi', function () {
+        return view('pages.materi', ['type_menu' => 'components']);
+    });
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::get('/home', function () {
         return view('pages.dashboard', ['type_menu' => 'dashboard']);
     })->name('home-guru');
+
+    Route::get('/materi', [MateriController::class, 'index']);
 });
 
 // Layout
@@ -121,9 +128,7 @@ Route::get('/bootstrap-typography', function () {
 
 
 // components
-Route::get('/materi', function () {
-    return view('pages.materi', ['type_menu' => 'components']);
-});
+
 Route::get('/components-avatar', function () {
     return view('pages.components-avatar', ['type_menu' => 'components']);
 });

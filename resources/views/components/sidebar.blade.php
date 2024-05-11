@@ -18,7 +18,9 @@
                 </li>
                 {{-- <li class="menu-header">Dashboard</li> --}}
                 <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('materi') }}"><i class="fas fa-home"></i>
+                    <a class="nav-link"
+                        href="{{ Session('user')['role'] == 'Guru' ? url('teacher/materi') : url('student/materi') }}"><i
+                            class="fas fa-home"></i>
                         <span>Material</span></a>
                 </li>
                 <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
