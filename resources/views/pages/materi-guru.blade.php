@@ -14,6 +14,7 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Materi</a></div>
+
                 </div>
             </div>
 
@@ -22,10 +23,13 @@
                 <div class="row">
 
                     <div class="col-12 ">
-                        <div class="card">
+                        <a href="{{ route('add-materi') }}" class="btn btn-success btn-block w-25 ">+ Tambah Materi</a>
+                        <div class="card mt-4">
+
 
                             <div class="card-body p-0">
                                 <div class="table-responsive">
+
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
@@ -42,49 +46,15 @@
                                                 <td>{{ $list->judul }}</td>
                                                 <td>{{ $list->deskripsi }}</td>
                                                 <td>
-                                                    <div class="badge badge-success">Active</div>
+                                                    {{ $list->nama_lengkap }}
+                                                    {{-- <div class="badge badge-success">Active</div> --}}
                                                 </td>
                                                 <td><a href="#" class="btn btn-secondary">Detail</a></td>
                                             </tr>
                                             <?php $no++; ?>
                                         @endforeach
 
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Hasan Basri</td>
-                                            <td>2017-01-09</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Kusnadi</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-danger">Not Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Rizal Fakhri</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Isnap Kiswandi</td>
-                                            <td>2017-01-17</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
+
                                     </table>
                                 </div>
                             </div>

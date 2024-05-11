@@ -20,4 +20,9 @@ class MateriController extends Controller
         // dd($data);
         return view('pages.materi-guru', compact('data'));
     }
+
+    public function create()
+    {
+        return view('pages.add-materi');
+    }
 }
