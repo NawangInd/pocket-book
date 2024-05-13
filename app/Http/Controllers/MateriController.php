@@ -62,4 +62,25 @@ class MateriController extends Controller
 
         return view('pages.edit-materi', compact('materi'));
     }
+
+    public function update(Request $request)
+    {
+        $materi = Materi::where([
+            'id' => $request->segment(3)
+        ])->first();
+        // dd($request->image);
+        $materi->judul = $request->judul;
+        $materi->user_id = 2;
+        $materi->deskripsi = $request->deskripsi;
+        $materi->created_at = Carbon::now();
+        $materi->updated_at = Carbon::now();
+        // $karyawan->image=$request->image;
+
+        if ($materi->save()) {
+
+            return redirect('/teacher/materi');
+        } else {
+            return redirect('/teacher/materi');
+        }
+    }
 }

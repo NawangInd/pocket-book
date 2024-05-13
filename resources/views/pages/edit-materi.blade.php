@@ -31,9 +31,10 @@
                             <div class="card-header">
                                 <h4>Form Edit Materi</h4>
                             </div>
-                            <form class="form" action="/teacher/store-materi" method="post"
+                            <form class="form" action="/teacher/materi/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
