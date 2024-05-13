@@ -51,4 +51,15 @@ class MateriController extends Controller
             // ->with('failed', 'Gagal membuat Materi');
         }
     }
+    public function edit(Request $request)
+    {
+        // $data['karyawan'] = Pegawai::where([
+        //     'id' => $request->segment(3)
+        // ])->first();
+        $materi = Materi::where([
+            'id' => $request->segment(3)
+        ])->first();
+
+        return view('pages.edit-materi', compact('materi'));
+    }
 }

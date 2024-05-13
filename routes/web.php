@@ -51,9 +51,10 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
         return view('pages.dashboard', ['type_menu' => 'dashboard']);
     })->name('home-guru');
 
-    Route::get('/materi', [MateriController::class, 'index']);
+    // Route::get('/materi', [MateriController::class, 'index']);
+    Route::resource('/materi', MateriController::class);
     Route::get('/add-materi', [MateriController::class, 'create'])->name("add-materi");
-    Route::post('/store-materi', [MateriController::class, 'store']);
+    // Route::post('/store-materi', [MateriController::class, 'store']);
 });
 
 // Layout

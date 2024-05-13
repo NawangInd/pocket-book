@@ -60,7 +60,8 @@ use Illuminate\Support\Str;
                                                     {{ $list->nama_lengkap }}
                                                     {{-- <div class="badge badge-success">Active</div> --}}
                                                 </td>
-                                                <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                                <td><a href="materi/{{ $list->id }}/edit"
+                                                        class="btn btn-secondary">Detail</a></td>
                                             </tr>
                                             <?php $no++; ?>
                                         @endforeach
