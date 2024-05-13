@@ -22,6 +22,15 @@ class MateriController extends Controller
         return view('pages.materi-guru', compact('data'));
     }
 
+    public function indexMateriMurid()
+    {
+        $data = Materi::join('user', 'user.id', '=', 'materi.user_id')
+            ->get();
+
+        // dd($data);
+        return view('pages.materi', compact('data'));
+    }
+
     public function create()
     {
         return view('pages.add-materi');
