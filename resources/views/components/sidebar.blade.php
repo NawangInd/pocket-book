@@ -7,7 +7,11 @@
             </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">
+
+                <img alt="image" class="rounded-circle" width="50" src="{{ asset('img/logo-lms.png') }}">
+
+            </a>
         </div>
         <div class=" d-flex flex-column justify-content-between " style="height: 90vh">
             <ul class="sidebar-menu">
@@ -31,11 +35,11 @@
 
             </ul>
 
-            <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+            {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
                 <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                     <i class="fas fa-rocket"></i> Documentation
                 </a>
-            </div>
+            </div> --}}
         </div>
 
     </aside>
