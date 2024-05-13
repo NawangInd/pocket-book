@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\models\Admin;
 use App\Models\Materi;
 use App\Models\User;
+use Carbon\Carbon;
 
 class MateriController extends Controller
 {
@@ -24,5 +25,30 @@ class MateriController extends Controller
     public function create()
     {
         return view('pages.add-materi');
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        if ($request) {
+            // $getPegawaiBaru = Pegawai::orderBy('created_at', 'desc')->first();
+            // $getKonfigCuti = Konfig_cuti::where('tahun',(new \DateTime())->format('Y'))->first();
+
+            $materi = new Materi;
+            $materi->judul = $request->judul;
+            $materi->user_id = 2;
+            $materi->deskripsi = $request->deskripsi;
+            $materi->created_at = Carbon::now();
+            $materi->updated_at = Carbon::now();
+
+
+            $materi->save();
+
+            return redirect('/teacher/materi');
+            // ->with('success', 'Berhasil membuat Materi');
+        } else {
+            return redirect('/teacher/materi');
+            // ->with('failed', 'Gagal membuat Materi');
+        }
     }
 }
