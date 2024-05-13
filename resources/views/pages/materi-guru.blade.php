@@ -49,12 +49,8 @@ use Illuminate\Support\Str;
                                                 <td>{{ $no }}</td>
                                                 <td>{{ $list->judul }}</td>
 
-                                                <td
-                                                    style="max-height: calc(1.2em * 3) !important;
-                                                overflow: hidden  !important;
-                                                text-overflow: ellipsis  !important; 
-                                                white-space: nowrap  !important;">
-                                                    {!! nl2br(htmlspecialchars_decode(Str::limit($list->deskripsi, 300))) !!}
+                                                <td>
+                                                    {!! nl2br(htmlspecialchars_decode(Str::limit($list->deskripsi, 1000))) !!}
                                                 </td>
                                                 <td>
                                                     {{ $list->nama_lengkap }}
