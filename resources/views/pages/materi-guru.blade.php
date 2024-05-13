@@ -57,7 +57,14 @@ use Illuminate\Support\Str;
                                                     {{-- <div class="badge badge-success">Active</div> --}}
                                                 </td>
                                                 <td><a href="materi/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Detail</a></td>
+                                                        class="btn btn-secondary">Detail</a>
+                                                    <form class="ml-auto mr-auto mt-3" method="POST"
+                                                        action="/teacher/materi/{{ $list->id }}">
+                                                        {{ csrf_field() }}
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             <?php $no++; ?>
                                         @endforeach

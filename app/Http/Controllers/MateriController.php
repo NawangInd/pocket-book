@@ -83,4 +83,17 @@ class MateriController extends Controller
             return redirect('/teacher/materi');
         }
     }
+
+    public function destroy(Request $request, $id)
+    {
+        $materi = Materi::findOrFail($id);
+
+
+
+        if ($materi->delete()) {
+            return redirect('/teacher/materi');
+        } else {
+            return redirect('/teacher/materi');
+        }
+    }
 }
