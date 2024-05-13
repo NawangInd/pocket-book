@@ -5,6 +5,10 @@
 @push('style')
     <!-- CSS Libraries -->
 @endpush
+<?php
+use Illuminate\Support\Str;
+
+?>
 
 @section('main')
     <div class="main-content">
@@ -44,7 +48,14 @@
                                             <tr>
                                                 <td>{{ $no }}</td>
                                                 <td>{{ $list->judul }}</td>
-                                                <td>{{ $list->deskripsi }}</td>
+
+                                                <td
+                                                    style="max-height: calc(1.2em * 3) !important;
+                                                overflow: hidden  !important;
+                                                text-overflow: ellipsis  !important; 
+                                                white-space: nowrap  !important;">
+                                                    {!! nl2br(htmlspecialchars_decode(Str::limit($list->deskripsi, 300))) !!}
+                                                </td>
                                                 <td>
                                                     {{ $list->nama_lengkap }}
                                                     {{-- <div class="badge badge-success">Active</div> --}}
