@@ -11,7 +11,7 @@ use App\Models\Notifikasi;
 use App\Models\User;
 use Carbon\Carbon;
 
-class MateriController extends Controller
+class DashboardController extends Controller
 {
 
     public function index()
@@ -24,17 +24,15 @@ class MateriController extends Controller
         return view('pages.materi-guru', compact('data'));
     }
 
-    public function indexMateriMurid()
+    public function indexDashboardMurid()
     {
-        $data = Materi::join('user', 'user.id', '=', 'materi.user_id')
-            ->select('materi.*', 'user.nama_lengkap')
-            ->orderBy('id', 'desc')
-            ->get();
+        $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->first();
+
 
 
 
         // dd($data);
-        return view('pages.materi', compact('data'));
+        return view('pages.dashboard', compact('newest_notifikasi'));
     }
 
     public function detailMateri(Request $request)

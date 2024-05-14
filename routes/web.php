@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
 use Illuminate\Support\Facades\Route;
@@ -37,13 +38,14 @@ Route::post('/login-action', [LoginController::class, 'login_action']);
 
 // Murid
 Route::middleware(['authMurid'])->prefix('student')->group(function () {
-    Route::get('/home', function () {
-        return view('pages.dashboard', ['type_menu' => 'dashboard']);
-    })->name('home-murid');
+    // Route::get('/home', function () {
+    //     return view('pages.dashboard', ['type_menu' => 'dashboard']);
+    // })->name('home-murid');
 
     // Route::get('/materi', function () {
     //     return view('pages.materi', ['type_menu' => 'components']);
     // });
+    Route::get('/home', [DashboardController::class, 'indexDashboardMurid']);
     Route::get('/materi', [MateriController::class, 'indexMateriMurid']);
     Route::get('/detail-materi/{id}', [MateriController::class, 'detailMateri']);
 });

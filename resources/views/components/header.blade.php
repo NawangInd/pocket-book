@@ -11,6 +11,7 @@ if ($role == 'Murid') {
 } else {
     $data = Notifikasi::where('role', '=', 'Guru')->get();
 }
+
 ?>
 <div class="navbar-bg"></div>
 <nav class="navbar navbar-expand-lg main-navbar">

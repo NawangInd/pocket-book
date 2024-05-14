@@ -50,18 +50,19 @@
                         <div class="card-wrap">
 
                             <div class="card-body text-dark d-flex justify-content-between align-items-center ">
+
                                 <div>
-                                    <h6 class="">
-                                        Hello Chaewon
+                                    <h6 class="text-capitalize">
+                                        Hello {{ Session('user')['nama'] }}
                                     </h6>
                                     <h6>
-                                        Materi baru telah diunggah, yuk pelajari!!!
+                                        {{ $newest_notifikasi->judul }}
                                     </h6>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary btn-lg rounded-pill">
+                                    <a href="/student/materi" class="btn btn-primary btn-lg rounded-pill">
                                         Open
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
