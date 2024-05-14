@@ -26,7 +26,7 @@ class Notifikasi extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'judul', 'deskripsi', 'is_seen', 'created_at', 'updated_at'];
+    protected $fillable = ['role', 'judul', 'deskripsi', 'is_seen', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

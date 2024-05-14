@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\models\Admin;
 use App\Models\Materi;
+use App\Models\Notifikasi;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -16,6 +17,7 @@ class MateriController extends Controller
     public function index()
     {
         $data = Materi::join('user', 'user.id', '=', 'materi.user_id')
+            ->select('materi.*', 'user.nama_lengkap')
             ->get();
 
         // dd($data);
@@ -62,9 +64,19 @@ class MateriController extends Controller
             $materi->updated_at = Carbon::now();
 
 
-            $materi->save();
+            if ($materi->save()) {
 
-            return redirect('/teacher/materi');
+                $notifikasi = new Notifikasi;
+                $notifikasi->role = "Murid";
+                $notifikasi->judul = "Materi baru dengan judul '" . $request->judul  . "' telah diunggah, yuk pelajari !!!";
+                $notifikasi->is_seen = "N";
+                $notifikasi->created_at = Carbon::now();
+                $notifikasi->updated_at = Carbon::now();
+
+                $notifikasi->save();
+
+                return redirect('/teacher/materi');
+            }
             // ->with('success', 'Berhasil membuat Materi');
         } else {
             return redirect('/teacher/materi');
