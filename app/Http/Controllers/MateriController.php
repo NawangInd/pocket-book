@@ -25,10 +25,21 @@ class MateriController extends Controller
     public function indexMateriMurid()
     {
         $data = Materi::join('user', 'user.id', '=', 'materi.user_id')
+            ->select('materi.*', 'user.nama_lengkap')
             ->get();
 
         // dd($data);
         return view('pages.materi', compact('data'));
+    }
+
+    public function detailMateri(Request $request)
+    {
+        $materi = Materi::where([
+            'id' => $request->segment(3)
+        ])->first();
+
+        // dd($materi);
+        return view('pages.detail-materi', compact('materi'));
     }
 
     public function create()

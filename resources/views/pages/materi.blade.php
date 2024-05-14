@@ -43,25 +43,27 @@
                         </article>
                     </div>
                     @foreach ($data as $list)
-                    @endforeach
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <article class="article article-style-b">
-                            <div class="article-header">
-                                <div class="article-image" data-background="{{ asset('img/news/img15.jpg') }}">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <article class="article article-style-b">
+                                <div class="article-header">
+                                    <div class="article-image" data-background="{{ asset('img/news/img15.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="article-details">
-                                <div class="article-title">
-                                    <h2 class="text-capitalize"><a href="#">{{ $list->judul }}</a></h2>
-                                </div>
-                                {{-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                <div class="article-details">
+                                    <div class="article-title">
+                                        <h2 class="text-capitalize"><a href="#">{{ $list->judul }}</a></h2>
+                                    </div>
+                                    {{-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. </p> --}}
-                                <div class="article-cta">
-                                    <a href="#">Read More <i class="fas fa-chevron-right"></i></a>
+                                    <div class="article-cta">
+                                        <a href="/student/detail-materi/{{ $list->id }}"
+                                            class="btn btn-info w-100 mt-5">View <i class="fas fa-chevron-right"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
+                    @endforeach
+
                     {{-- <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                         <article class="article article-style-b">
                             <div class="article-header">

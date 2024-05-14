@@ -45,6 +45,7 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     //     return view('pages.materi', ['type_menu' => 'components']);
     // });
     Route::get('/materi', [MateriController::class, 'indexMateriMurid']);
+    Route::get('/detail-materi/{id}', [MateriController::class, 'detailMateri']);
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
