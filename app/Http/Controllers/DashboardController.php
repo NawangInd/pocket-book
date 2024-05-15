@@ -16,12 +16,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data = Materi::join('user', 'user.id', '=', 'materi.user_id')
-            ->select('materi.*', 'user.nama_lengkap')
-            ->get();
-
-        // dd($data);
-        return view('pages.materi-guru', compact('data'));
+        return view('pages.dashboard-guru');
     }
 
     public function indexDashboardMurid()
