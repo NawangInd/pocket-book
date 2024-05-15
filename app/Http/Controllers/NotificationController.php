@@ -11,12 +11,23 @@ use App\Models\Notifikasi;
 use App\Models\User;
 use Carbon\Carbon;
 
-class DashboardController extends Controller
+class NotificationController extends Controller
 {
 
     public function index()
     {
-        return view('pages.dashboard-guru');
+        $role = Session('user')['role'];
+
+        // dd($role);
+        if ($role == 'Guru') {
+            $newest_notifikasi = Notifikasi::where('role', '=', 'Guru')->orderBy('id', 'desc')->get();
+
+            return view('pages.notification', compact('newest_notifikasi'));
+        } else {
+            $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->get();
+
+            return view('pages.notification', compact('newest_notifikasi'));
+        }
     }
 
     public function indexDashboardMurid()

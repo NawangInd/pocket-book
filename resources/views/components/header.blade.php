@@ -112,7 +112,7 @@ if ($role == 'Murid') {
 
                 </div>
                 <div class="dropdown-footer text-center">
-                    {{-- <a href="#">View All <i class="fas fa-chevron-right"></i></a> --}}
+                    <a href="notification">View All <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
         </li>

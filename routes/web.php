@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,7 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('/materi', [MateriController::class, 'indexMateriMurid']);
     Route::get('/detail-materi/{id}', [MateriController::class, 'detailMateri']);
     Route::post('/materi/log-end-time', [MateriController::class, 'logEndTime'])->name('materi.logEndTime');
+    Route::get('/notification', [NotificationController::class, 'index']);
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
@@ -58,6 +60,8 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     // Route::get('/materi', [MateriController::class, 'index']);
     Route::resource('/materi', MateriController::class);
     Route::get('/add-materi', [MateriController::class, 'create'])->name("add-materi");
+    Route::get('/notification', [NotificationController::class, 'index']);
+
     // Route::post('/store-materi', [MateriController::class, 'store']);
 });
 

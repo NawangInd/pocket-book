@@ -87,8 +87,8 @@ class MateriController extends Controller
             // dd($activityLog);
             Notifikasi::create([
                 'role' => 'Guru',
-                'judul' => Session('user')['nama'] . 'selesai membaca materi',
-                'deskripsi' =>  Session('user')['nama'] . ' telah selesai membaca materi : ' . $activityLog->judul . ' dari jam : ' . $activityLog->created_at . ' sampai ' . $activityLog->end_time,
+                'judul' => Session('user')['nama'] . ' selesai membaca materi',
+                'deskripsi' =>  Session('user')['nama'] . ' telah selesai membaca materi : ' . $activityLog->judul . ' dari jam : ' . Carbon::parse($activityLog->created_at)->format('H:i:s A') . ' sampai ' . Carbon::parse($activityLog->end_time)->format('H:i:s A'),
                 'is_seen' => 'N',
                 'created_at' => Carbon::now('Asia/Jakarta'),
                 'updated_at' => Carbon::now('Asia/Jakarta')
