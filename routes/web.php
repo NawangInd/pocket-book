@@ -48,6 +48,7 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('/home', [DashboardController::class, 'indexDashboardMurid']);
     Route::get('/materi', [MateriController::class, 'indexMateriMurid']);
     Route::get('/detail-materi/{id}', [MateriController::class, 'detailMateri']);
+    Route::post('/materi/log-end-time', [MateriController::class, 'logEndTime'])->name('materi.logEndTime');
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {

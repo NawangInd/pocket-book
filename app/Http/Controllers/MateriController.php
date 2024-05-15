@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -43,8 +44,51 @@ class MateriController extends Controller
             'id' => $request->segment(3)
         ])->first();
 
-        // dd($materi);
-        return view('pages.detail-materi', compact('materi'));
+        $activityLog = ActivityLog::create([
+            'user_id' => Session('user')['id'],
+            'materi_id' => $request->segment(3),
+            'start_time' => Carbon::now('Asia/Jakarta'),
+        ]);
+
+        // dd($activityLog);
+        return view('pages.detail-materi', compact('materi', 'activityLog'));
+    }
+
+    public function logEndTime(Request $request)
+    {
+        // $activityLog = ActivityLog::findOrFail($request->log_id);
+        // $activityLog->update([
+        //     'end_time' => Carbon::now('Asia/Jakarta'),
+        // ]);
+        $activityLog = ActivityLog::where('id', $request->log_id)->first();
+
+        if ($activityLog) {
+            $activityLog->update(['end_time' => Carbon::now('Asia/Jakarta')]);
+
+            // Create a notification for the teacher
+            Notifikasi::create([
+                'user_id' => $activityLog->user_id, // or the teacher's user_id
+                'judul' => 'Murid selesai membaca materi',
+                'deskripsi' => 'Murid ' . $activityLog->user->name . ' telah selesai membaca materi ' . $activityLog->materi->judul . ' selama ' . $activityLog->start_time->diffInMinutes($activityLog->end_time) . ' menit.',
+                'is_seen' => 'N',
+            ]);
+
+            return response()->json(['message' => 'End time logged successfully']);
+        }
+
+        return response()->json(['message' => 'Log not found'], 404);
+
+
+
+        // $logId = $request->input('log_id');
+        // // Update the end time in the activity log
+        // $activityLog = ActivityLog::find($logId);
+        // if ($activityLog) {
+        //     $activityLog->end_time = now();
+        //     $activityLog->save();
+        // }
+
+        // return response()->json(['status' => 'success']);
     }
 
     public function create()
