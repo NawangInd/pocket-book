@@ -50,7 +50,15 @@ class MateriController extends Controller
             'start_time' => Carbon::now('Asia/Jakarta'),
         ]);
 
-        // dd($activityLog);
+        // $activityLogs = ActivityLog::
+
+        //     // ->join('user', 'user.id', '=', 'activity_log.user_id')
+        //     ->join('materi', 'materi.id', '=', 'activity_log.materi_id')
+        //     ->
+        //     ->select('activity_log.*', 'materi.judul')
+        //     ->first();
+
+        // dd($activityLogs);
         return view('pages.detail-materi', compact('materi', 'activityLog'));
     }
 
@@ -60,18 +68,41 @@ class MateriController extends Controller
         // $activityLog->update([
         //     'end_time' => Carbon::now('Asia/Jakarta'),
         // ]);
-        $activityLog = ActivityLog::where('id', $request->log_id)->first();
+        $activityLog = ActivityLog::where('activity_log.id', $request->log_id)
+            // ->join('user', 'user.id', '=', 'activity_log.user_id')
+            ->join('materi', 'materi.id', '=', 'activity_log.materi_id')
+            ->select('activity_log.*', 'materi.judul')
+            ->first();
+
+        // $getData = ActivityLog::where('id', $request->log_id)
+        //     // ->join('user', 'user.id', '=', 'activity_log.user_id')
+        //     ->join('materi', 'materi.id', '=', 'activity_log.materi_id')
+        //     ->select('activity_log.*', 'materi.judul as judul_materi')
+        //     ->first();
 
         if ($activityLog) {
             $activityLog->update(['end_time' => Carbon::now('Asia/Jakarta')]);
 
             // Create a notification for the teacher
+            // dd($activityLog);
             Notifikasi::create([
-                'user_id' => $activityLog->user_id, // or the teacher's user_id
+                'role' => 'Guru',
                 'judul' => 'Murid selesai membaca materi',
-                'deskripsi' => 'Murid ' . $activityLog->user->name . ' telah selesai membaca materi ' . $activityLog->materi->judul . ' selama ' . $activityLog->start_time->diffInMinutes($activityLog->end_time) . ' menit.',
+                'deskripsi' => 'Murid ' . Session('user')['nama'] . ' telah selesai membaca materi ' . $activityLog->judul . ' selama ' . $activityLog->created_at->diffInMinutes($activityLog->end_time) . ' menit.',
                 'is_seen' => 'N',
+                'created_at' => Carbon::now('Asia/Jakarta'),
+                'updated_at' => Carbon::now('Asia/Jakarta')
             ]);
+
+            // $notifikasi = new Notifikasi;
+            // $notifikasi->role = "Guru";
+            // $notifikasi->judul = "Murid selesai membaca materi";
+            // $notifikasi->is_seen = "N";
+            // $notifikasi->created_at = Carbon::now();
+            // $notifikasi->updated_at = Carbon::now();
+
+            // $notifikasi->save();
+
 
             return response()->json(['message' => 'End time logged successfully']);
         }
