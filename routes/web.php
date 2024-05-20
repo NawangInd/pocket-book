@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StudentQuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,14 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('/detail-materi/{id}', [MateriController::class, 'detailMateri']);
     Route::post('/materi/log-end-time', [MateriController::class, 'logEndTime'])->name('materi.logEndTime');
     Route::get('/notification', [NotificationController::class, 'index']);
+
+    // Quiz
+
+    Route::get('quizzes', [StudentQuizController::class, 'index']);
+
+    Route::get('quizzes/{id}', [StudentQuizController::class, 'showQuiz'])->name('student.quizzes.show');
+    Route::post('quizzes/{id}', [StudentQuizController::class, 'submitQuiz'])->name('student.quizzes.submit');
+    Route::get('quizzes/{id}/result/{attempt_id}', [StudentQuizController::class, 'showResult'])->name('student.quizzes.result');
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
