@@ -27,8 +27,8 @@
                             class="fas fa-home"></i>
                         <span>Material</span></a>
                 </li>
-                <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('submission') }}"><i class="fas fa-file-pen"></i>
+                <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
                         <span>Assignments</span></a>
                 </li>
                 <li class="nav-item dropdown">
