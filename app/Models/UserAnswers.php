@@ -20,14 +20,14 @@ class UserAnswers extends Model
     /**
      * @var array
      */
-    protected $fillable = ['quiz_attempt_id', 'question_id', 'chosen_answer', 'is_correct', 'created_at', 'updated_at'];
+    protected $fillable = ['quiz_attempts_id', 'question_id', 'chosen_answer', 'is_correct', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function quizAttempt()
+    public function quizAttempts()
     {
-        return $this->belongsTo('App\Models\QuizAttempt');
+        return $this->belongsTo('App\Models\QuizAttempts');
     }
 
     /**
@@ -35,6 +35,6 @@ class UserAnswers extends Model
      */
     public function question()
     {
-        return $this->belongsTo('App\Models\Question');
+        return $this->belongsTo('App\Models\Questions');
     }
 }
