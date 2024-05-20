@@ -35,7 +35,7 @@ class QuizAttempts extends Model
      */
     public function quiz()
     {
-        return $this->belongsTo('App\Models\Quiz', 'quizzes_id');
+        return $this->belongsTo('App\Models\Quizzes', 'quizzes_id');
     }
 
     /**
@@ -43,6 +43,6 @@ class QuizAttempts extends Model
      */
     public function userAnswers()
     {
-        return $this->hasMany('App\Models\UserAnswer');
+        return $this->hasMany('App\Models\UserAnswers');
     }
 }
