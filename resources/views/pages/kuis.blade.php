@@ -6,6 +6,11 @@
     <!-- CSS Libraries -->
 @endpush
 
+<?php
+use App\Models\QuizAttempts;
+
+?>
+
 @section('main')
     <div class="main-content">
         <section class="section">
@@ -23,6 +28,14 @@
                 <div class="row">
 
                     @foreach ($quizzes as $list)
+                        <?php
+                        $cek = QuizAttempts::where('user_id', '=', Session('user')['id'])
+                            ->where('quizzes_id', '=', $list->id)
+                            ->first();
+                        
+                        // dd($cek);
+                        
+                        ?>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                             <article class="article article-style-b">
                                 <div class="article-header">
@@ -36,8 +49,18 @@
                                     {{-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. </p> --}}
                                     <div class="article-cta">
-                                        <a href="/student/quizzes/{{ $list->id }}" class="btn btn-info w-100 mt-5">View
-                                            <i class="fas fa-chevron-right"></i></a>
+                                        @if ($cek)
+                                            <a href="{{ route('student.quizzes.resultByUser', ['user_id' => Session('user')['id'], 'quiz_id' => $list->id]) }}"
+                                                class="btn btn-info w-100 mt-5 d-flex justify-content-around  align-items-center ">View
+                                                Score
+                                                {{-- <i class="fas fa-chevron-right "></i> --}}
+                                            </a>
+                                        @else
+                                            <a href="/student/quizzes/{{ $list->id }}"
+                                                class="btn btn-success w-100 mt-5">Start Quiz
+                                                <i class="fas fa-chevron-right"></i></a>
+                                        @endif
+
                                     </div>
                                 </div>
                             </article>
