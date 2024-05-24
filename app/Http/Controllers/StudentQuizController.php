@@ -71,4 +71,12 @@ class StudentQuizController extends Controller
         $quizAttempt = QuizAttempts::with('userAnswers')->findOrFail($attempt_id);
         return view('pages.hasil-kuis', compact('quiz', 'quizAttempt'));
     }
+
+    public function showResultByUser($user_id, $quiz_id)
+    {
+        $quiz = Quizzes::findOrFail($quiz_id);
+        $quizAttempt = QuizAttempts::with('userAnswers')->where('user_id', '=', $user_id)->where('quizzes_id', "=", $quiz_id)->first();
+        // dd($quizAttempt);
+        return view('pages.hasil-kuis', compact('quiz', 'quizAttempt'));
+    }
 }
