@@ -61,6 +61,7 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('quizzes/{id}', [StudentQuizController::class, 'showQuiz'])->name('student.quizzes.show');
     Route::post('quizzes/{id}', [StudentQuizController::class, 'submitQuiz'])->name('student.quizzes.submit');
     Route::get('quizzes/{id}/result/{attempt_id}', [StudentQuizController::class, 'showResult'])->name('student.quizzes.result');
+    Route::get('quizzes/{user_id}/score/{quiz_id}', [StudentQuizController::class, 'showResultByUser'])->name('student.quizzes.resultByUser');
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
