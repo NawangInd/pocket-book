@@ -31,20 +31,23 @@
                     <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
                         <span>Assignments</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                            class="fas fa-columns"></i>
-                        <span>Manage Quiz</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="{{ Request::is('teacher/quizzes') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('teacher/quizzes') }}">Quiz</a>
-                        </li>
-                        <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ url('transparent-sidebar') }}">Questions & Answer</a>
-                        </li>
+                @if (Session('user')['role'] == 'Guru')
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                class="fas fa-columns"></i>
+                            <span>Manage Quiz</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{ Request::is('teacher/quizzes') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('teacher/quizzes') }}">Quiz</a>
+                            </li>
+                            <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('transparent-sidebar') }}">Questions & Answer</a>
+                            </li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                @endif
+
 
             </ul>
 
