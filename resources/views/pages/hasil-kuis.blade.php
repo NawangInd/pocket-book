@@ -54,7 +54,8 @@
                                         bisa
                                         melihat peringkat skor anda melalui tombol dibawah ini
                                     </p>
-                                    <a href="#" class="btn btn-primary mt-4">Leaderboard</a>
+                                    <a href="{{ route('student.quizzes.resultByUser', ['user_id' => Session('user')['id'], 'quiz_id' => $quiz->id]) }}"
+                                        class="btn btn-primary mt-4">Leaderboard</a>
                                     {{-- <a href="#" class="bb mt-4">Need Help?</a> --}}
                                 </div>
                             </div>
