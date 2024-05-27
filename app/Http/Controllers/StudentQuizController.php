@@ -76,7 +76,14 @@ class StudentQuizController extends Controller
     {
         $quiz = Quizzes::findOrFail($quiz_id);
         $quizAttempt = QuizAttempts::with('userAnswers')->where('user_id', '=', $user_id)->where('quizzes_id', "=", $quiz_id)->first();
-        // dd($quizAttempt);
-        return view('pages.hasil-kuis', compact('quiz', 'quizAttempt'));
+        // $listQuizAttempt = QuizAttempts::with('userAnswers')->join('user', 'user.id', '=', 'quiz_attempts.user_id')->where('quizzes_id', "=", $quiz_id)->get();
+        $listQuizAttempt = QuizAttempts::with('userAnswers')
+            ->join('user', 'user.id', '=', 'quiz_attempts.user_id')
+            ->where('quizzes_id', '=', $quiz_id)
+            ->orderBy('score', 'desc')
+            ->get();
+        // dd($listQuizAttempt);
+
+        return view('pages.score', compact('quiz', 'quizAttempt', 'listQuizAttempt'));
     }
 }
