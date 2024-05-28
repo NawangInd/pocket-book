@@ -16,10 +16,17 @@
         <div class=" d-flex flex-column justify-content-between " style="height: 90vh">
             <ul class="sidebar-menu">
 
-                <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('blank-page') }}"><i class="fas fa-th-large"></i>
-                        <span>Dashboard</span></a>
-                </li>
+                @if (Session('user')['role'] == 'Murid')
+                    <li class="{{ Request::is('home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/home') }}"><i class="fas fa-th-large"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                @else
+                    <li class="{{ Request::is('/teacher/home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/home') }}"><i class="fas fa-th-large"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                @endif
                 {{-- <li class="menu-header">Dashboard</li> --}}
                 <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                     <a class="nav-link"
