@@ -65,7 +65,7 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
-    Route::get('/home', [DashboardController::class, 'index']);
+    Route::get('/home', [DashboardController::class, 'indexDashboardGuru']);
 
 
     // Route::get('/materi', [MateriController::class, 'index']);
