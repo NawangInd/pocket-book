@@ -60,7 +60,7 @@
                                     </h6>
                                 </div>
                                 <div>
-                                    <a href="/student/materi" class="btn btn-primary btn-lg rounded-pill">
+                                    <a href="/student/materi/" class="btn btn-primary btn-lg rounded-pill">
                                         Open
                                     </a>
                                 </div>
@@ -120,42 +120,19 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
+                                @foreach ($list_leaderboard as $list_ranking)
+                                    <li class="media">
+                                        <img class="rounded-circle mr-3" width="50"
+                                            src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
 
-                                        <div class="media-title">Mingyu</div>
-                                        <span class="text-small text-muted">Score 60</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
+                                            <div class="media-title">{{ $list_ranking->nama_lengkap }}</div>
+                                            <span class="text-small text-muted">Score {{ $list_ranking->score }}</span>
+                                        </div>
+                                    </li>
+                                @endforeach
 
-                                        <div class="media-title">Mingyu</div>
-                                        <span class="text-small text-muted">Score 60</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
 
-                                        <div class="media-title">Mingyu</div>
-                                        <span class="text-small text-muted">Score 60</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
-
-                                        <div class="media-title">Mingyu</div>
-                                        <span class="text-small text-muted">Score 60</span>
-                                    </div>
-                                </li>
                             </ul>
                             <div class="pt-1 pb-1 text-center">
                                 <a href="#" class="btn btn-primary btn-lg btn-round">
