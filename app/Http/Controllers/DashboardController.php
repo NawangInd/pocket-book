@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use App\models\Admin;
 use App\Models\Materi;
 use App\Models\Notifikasi;
+use App\Models\QuizAttempts;
+use App\Models\Quizzes;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -22,11 +24,30 @@ class DashboardController extends Controller
     public function indexDashboardMurid()
     {
         $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->first();
+        $get_new_materi = Materi::latest()->first();
+        $get_new_quiz = Quizzes::where("materi_id", "=", $get_new_materi->id)->first();
+        $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_new_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
 
+        // dd($list_leaderboard);
 
 
 
         // dd($data);
-        return view('pages.dashboard', compact('newest_notifikasi'));
+        return view('pages.dashboard', compact('newest_notifikasi', 'list_leaderboard'));
+    }
+    public function indexDashboardGuru()
+    {
+        $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->first();
+        $get_new_materi = Materi::latest()->first();
+        $get_new_quiz = Quizzes::where("materi_id", "=", $get_new_materi->id)->first();
+        $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_new_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
+        $listMurid = User::where('role', '=', 'Murid')->limit('4')->get();
+
+        // dd($listMurid);
+
+
+
+        // dd($data);
+        return view('pages.dashboard-guru', compact('newest_notifikasi', 'list_leaderboard', 'listMurid'));
     }
 }
