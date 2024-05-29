@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentQuizController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,10 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::get('quizzes/{quiz}/questions/{question}/edit', [QuizController::class, 'editQuestion'])->name('questions.edit');
     Route::put('quizzes/{quiz}/questions/{question}', [QuizController::class, 'updateQuestion'])->name('questions.update');
     Route::delete('quizzes/{quiz}/questions/{question}', [QuizController::class, 'destroyQuestion'])->name('questions.destroy');
+
+    Route::resource('/manage-student', StudentController::class);
+    Route::get('/add-student', [StudentController::class, 'create'])->name("add-student");
+
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
 });
