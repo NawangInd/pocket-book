@@ -39,6 +39,10 @@
                         <span>Assignments</span></a>
                 </li>
                 @if (Session('user')['role'] == 'Guru')
+                    <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/manage-student') }}"><i class="fas fa-user"></i>
+                            <span>Manage Students</span></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-columns"></i>
