@@ -49,6 +49,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <div id="image-preview" class="image-preview">
+                                                <label for="image-upload" id="image-label">Choose File</label>
+                                                <input type="file" name="gambar" id="image-upload" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
                                             <button class="btn btn-primary" type="submit">Publish</button>
@@ -69,9 +79,16 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
+    {{-- <script src="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script> --}}
+
     <script src="{{ asset('library/codemirror/lib/codemirror.js') }}"></script>
     <script src="{{ asset('library/codemirror/mode/javascript/javascript.js') }}"></script>
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
+
+    <script src="{{ asset('library/upload-preview/upload-preview.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/features-post-create.js') }}"></script>
 
     <!-- Page Specific JS File -->
 @endpush
