@@ -24,8 +24,9 @@
             <div class="row">
                 <div class="col-9">
                     <div class="section-header flex-column align-items-start ">
-                        <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center w-100">
                             <h1>My Students</h1>
+                            <a href="{{ url('teacher/manage-student') }}">View All</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-center w-100 mt-5">
 
@@ -33,7 +34,12 @@
                                 {{-- <div class="col-3"> --}}
                                 <article class="article article-style-b mr-4" style="width: 15vw">
                                     <div class="article-header">
-                                        <div class="article-image" data-background="{{ asset('img/news/img15.jpg') }}">
+                                        <div class="article-image"
+                                            data-background="
+                                        @if ($list->gambar) {{ asset('img/murid/' . $list->gambar) }}
+                                        @else
+                                        {{ asset('img/news/img15.jpg') }} @endif
+                                       ">
                                         </div>
                                     </div>
                                     <div class="article-details">
