@@ -85,6 +85,9 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::resource('/manage-student', StudentController::class);
     Route::get('/add-student', [StudentController::class, 'create'])->name("add-student");
 
+    Route::get('assignments', [StudentQuizController::class, 'index']);
+    Route::get('assignments/score/{quiz_id}', [StudentQuizController::class, 'showAllResultByGuru'])->name('teacher.quizzes.showAllResultByGuru');
+
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
 });
