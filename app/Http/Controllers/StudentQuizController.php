@@ -25,6 +25,7 @@ class StudentQuizController extends Controller
 
     public function submitQuiz(Request $request, $id)
     {
+        // dd($request->all());
         $quiz = Quizzes::with('questions')->findOrFail($id);
         $user =  Session('user')['id'];
 
@@ -40,19 +41,17 @@ class StudentQuizController extends Controller
         foreach ($quiz->questions as $question) {
             $answer = $request->input('question_' . $question->id);
 
+            // Set empty answers to null or ""
+            if (is_null($answer)) {
+                $answer = ""; // You can also use null if you prefer
+            }
+
             UserAnswers::create([
                 'quiz_attempts_id' => $quizAttempt->id,
                 'question_id' => $question->id,
                 'chosen_answer' => $answer,
             ]);
 
-            // $tes = [
-            //     'tes1' => $question->correct_answer,
-            //     'tes2' => $answer,
-            // ];
-
-            // dd($tes);
-            // dd('tes' =>$question->correct_answer)
             if ($answer == $question->correct_answer) {
                 $correctAnswers++;
             }
@@ -64,6 +63,7 @@ class StudentQuizController extends Controller
 
         return redirect()->route('student.quizzes.result', ['id' => $quiz->id, 'attempt_id' => $quizAttempt->id]);
     }
+
 
     public function showResult($id, $attempt_id)
     {
