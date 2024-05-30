@@ -58,7 +58,13 @@ use Illuminate\Support\Str;
 
                                                 </td>
                                                 <td>
-                                                    {{ $list->gambar }}
+                                                    @if ($list->gambar)
+                                                        <img src="{{ asset('img/murid/' . $list->gambar) }}" alt=""
+                                                            width="150">
+                                                    @else
+                                                        <i>Gambar Belum Di Setting</i>
+                                                    @endif
+
 
                                                 </td>
                                                 <td><a href="manage-student/{{ $list->id }}/edit"
