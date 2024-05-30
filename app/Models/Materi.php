@@ -26,7 +26,7 @@ class Materi extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'judul', 'deskripsi', 'file', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'judul', 'deskripsi', 'file', 'gambar', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
