@@ -49,17 +49,26 @@ use App\Models\QuizAttempts;
                                     {{-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. </p> --}}
                                     <div class="article-cta">
-                                        @if ($cek)
-                                            <a href="{{ route('student.quizzes.resultByUser', ['user_id' => Session('user')['id'], 'quiz_id' => $list->id]) }}"
+                                        @if (Session('user')['role'] == 'Murid')
+                                            @if ($cek)
+                                                <a href="{{ route('student.quizzes.resultByUser', ['user_id' => Session('user')['id'], 'quiz_id' => $list->id]) }}"
+                                                    class="btn btn-info w-100 mt-5 d-flex justify-content-around  align-items-center ">View
+                                                    Score
+                                                    {{-- <i class="fas fa-chevron-right "></i> --}}
+                                                </a>
+                                            @else
+                                                <a href="/student/quizzes/{{ $list->id }}"
+                                                    class="btn btn-success w-100 mt-5">Start Quiz
+                                                    <i class="fas fa-chevron-right"></i></a>
+                                            @endif
+                                        @else
+                                            <a href="{{ route('teacher.quizzes.showAllResultByGuru', ['quiz_id' => $list->id]) }}"
                                                 class="btn btn-info w-100 mt-5 d-flex justify-content-around  align-items-center ">View
                                                 Score
                                                 {{-- <i class="fas fa-chevron-right "></i> --}}
                                             </a>
-                                        @else
-                                            <a href="/student/quizzes/{{ $list->id }}"
-                                                class="btn btn-success w-100 mt-5">Start Quiz
-                                                <i class="fas fa-chevron-right"></i></a>
                                         @endif
+
 
                                     </div>
                                 </div>
