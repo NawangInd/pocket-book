@@ -21,7 +21,7 @@ class Quizzes extends Model
     /**
      * @var array
      */
-    protected $fillable = ['materi_id', 'title', 'deskripsi', 'created_at', 'updated_at'];
+    protected $fillable = ['materi_id', 'title', 'deskripsi', 'timer', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
