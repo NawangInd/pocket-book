@@ -21,24 +21,30 @@
                         <a class="nav-link" href="{{ url('student/home') }}"><i class="fas fa-th-large"></i>
                             <span>Dashboard</span></a>
                     </li>
-                @else
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/materi') }}"><i class="fas fa-home"></i>
+                            <span>Material</span></a>
+                    </li>
+                    <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
+                            <span>Assignments</span></a>
+                    </li>
+                @endif
+                {{-- <li class="menu-header">Dashboard</li> --}}
+
+                @if (Session('user')['role'] == 'Guru')
                     <li class="{{ Request::is('/teacher/home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/home') }}"><i class="fas fa-th-large"></i>
                             <span>Dashboard</span></a>
                     </li>
-                @endif
-                {{-- <li class="menu-header">Dashboard</li> --}}
-                <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                    <a class="nav-link"
-                        href="{{ Session('user')['role'] == 'Guru' ? url('teacher/materi') : url('student/materi') }}"><i
-                            class="fas fa-home"></i>
-                        <span>Material</span></a>
-                </li>
-                <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
-                        <span>Assignments</span></a>
-                </li>
-                @if (Session('user')['role'] == 'Guru')
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-home"></i>
+                            <span>Material</span></a>
+                    </li>
+                    <li class="{{ Request::is('quizzes/score') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/assignments') }}"><i class="fas fa-file-pen"></i>
+                            <span>Assignments</span></a>
+                    </li>
                     <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/manage-student') }}"><i class="fas fa-user"></i>
                             <span>Manage Students</span></a>
