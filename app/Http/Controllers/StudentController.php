@@ -37,29 +37,37 @@ class StudentController extends Controller
     {
         // dd($request->all());
         if ($request) {
-            // $getPegawaiBaru = Pegawai::orderBy('created_at', 'desc')->first();
-            // $getKonfigCuti = Konfig_cuti::where('tahun',(new \DateTime())->format('Y'))->first();
+            if ($request->hasFile('gambar')) {
 
-            $user = new User;
-            $user->nama_lengkap = $request->nama_lengkap;
-            $user->role = "Murid";
-            $user->email = $request->email;
-            $user->password = $request->password;
-            $user->alamat = $request->alamat;
-            $user->nomor_induk = $request->nomor_induk;
-            $user->gambar = "Tes";
-            $user->created_at = Carbon::now();
-            $user->updated_at = Carbon::now();
+                // $getPegawaiBaru = Pegawai::orderBy('created_at', 'desc')->first();
+                // $getKonfigCuti = Konfig_cuti::where('tahun',(new \DateTime())->format('Y'))->first();
+                $fileName = $request->file('gambar')->getClientOriginalName();
+                $request->file('gambar')->move('img/murid', $fileName);
 
-            $user->save();
+                $user = new User;
+                $user->nama_lengkap = $request->nama_lengkap;
+                $user->role = "Murid";
+                $user->email = $request->email;
+                $user->password = $request->password;
+                $user->alamat = $request->alamat;
+                $user->nomor_induk = $request->nomor_induk;
+                $user->gambar = $fileName;
+                $user->created_at = Carbon::now();
+                $user->updated_at = Carbon::now();
 
-            return redirect('/teacher/manage-student');
+                $user->save();
+
+                return redirect('/teacher/manage-student');
 
 
 
-            // ->with('success', 'Berhasil membuat Materi');
+                // ->with('success', 'Berhasil membuat Materi');
+            } else {
+                return redirect('/teacher/manage-student');
+                // ->with('failed', 'Gagal membuat Materi');
+            }
         } else {
-            return redirect('/teacher/manage-student');
+            return redirect('/teacher/materi');
             // ->with('failed', 'Gagal membuat Materi');
         }
     }
@@ -77,10 +85,11 @@ class StudentController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
+
         $user = User::where([
             'id' => $request->segment(3)
         ])->first();
-        // dd($request->image);
         $user->nama_lengkap = $request->nama_lengkap;
         $user->email = $request->email;
         $user->password = $request->password;
@@ -91,10 +100,15 @@ class StudentController extends Controller
         $user->updated_at = Carbon::now();
         // $karyawan->image=$request->image;
 
-        if ($user->save()) {
+        if ($request->hasFile('gambar')) {
+            $fileName = $request->file('gambar')->getClientOriginalName();
+            $request->file('gambar')->move('img/murid', $fileName);
 
+            $user->gambar = $fileName;
+            $user->save();
             return redirect('/teacher/manage-student');
         } else {
+            $user->save();
             return redirect('/teacher/manage-student');
         }
     }
