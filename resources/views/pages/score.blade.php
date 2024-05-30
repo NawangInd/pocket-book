@@ -14,7 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Hasil Quiz</h1>
+                @if (Session('user')['role'] == 'Murid')
+                    <h1>Hasil Quiz</h1>
+                @else
+                    <h1>Leaderboard</h1>
+                @endif
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Materi</a></div>
@@ -27,30 +31,33 @@
 
                 <div class="row">
 
+                    @if (Session('user')['role'] == 'Murid')
+                        <div class="col-12 ">
+                            <div class="card">
 
-                    <div class="col-12 ">
-                        <div class="card">
+                                <div class="card-body">
+                                    <div class="empty-state" data-height="150">
+                                        <div class="empty-state-icon bg-success ">
+                                            <i class="fa-solid fa-award"></i>
+                                            {{-- <i class="fas fa-question"></i> --}}
+                                        </div>
+                                        <h2>Your Score : {{ $quizAttempt->score }}</h2>
 
-                            <div class="card-body">
-                                <div class="empty-state" data-height="150">
-                                    <div class="empty-state-icon bg-success ">
-                                        <i class="fa-solid fa-award"></i>
-                                        {{-- <i class="fas fa-question"></i> --}}
+
                                     </div>
-                                    <h2>Your Score : {{ $quizAttempt->score }}</h2>
-
-
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
 
                     <div class="col-12 ">
+                        @if (Session('user')['role'] == 'Murid')
+                            <div class="section-header">
+                                <h1>Leaderboard</h1>
 
-                        <div class="section-header">
-                            <h1>Leaderboard</h1>
+                            </div>
+                        @endif
 
-                        </div>
 
                         <div class="card-body p-0">
                             <div class="table-responsive">
