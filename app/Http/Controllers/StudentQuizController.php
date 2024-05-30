@@ -86,4 +86,13 @@ class StudentQuizController extends Controller
 
         return view('pages.score', compact('quiz', 'quizAttempt', 'listQuizAttempt'));
     }
+
+    public function showAllResultByGuru($quizzes_id)
+    {
+        $listQuizAttempt = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $quizzes_id)->select('quiz_attempts.*', 'user.nama_lengkap')
+            ->orderBy('score', 'desc')
+            ->get();
+
+        return view('pages.score', compact('listQuizAttempt'));
+    }
 }
