@@ -42,9 +42,10 @@
                             <span>Material</span></a>
                     </li>
                     <li class="{{ Request::is('quizzes/score') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('teacher/assignments') }}"><i class="fas fa-file-pen"></i>
-                            <span>Assignments</span></a>
+                        <a class="nav-link" href="{{ url('teacher/quiz') }}"><i class="fas fa-file-pen"></i>
+                            <span>Result Quiz</span></a>
                     </li>
+
                     <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/manage-student') }}"><i class="fas fa-user"></i>
                             <span>Manage Students</span></a>
@@ -59,6 +60,20 @@
                             </li>
                             <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('transparent-sidebar') }}">Questions & Answer</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                class="fas fa-columns"></i>
+                            <span>Assignment</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{ Request::is('teacher/assignment') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('teacher/assignment') }}">Manage Assignment</a>
+                            </li>
+                            <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('transparent-sidebar') }}">Result</a>
                             </li>
 
                         </ul>
