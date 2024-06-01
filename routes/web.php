@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
@@ -85,8 +86,11 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::resource('/manage-student', StudentController::class);
     Route::get('/add-student', [StudentController::class, 'create'])->name("add-student");
 
-    Route::get('assignments', [StudentQuizController::class, 'index']);
-    Route::get('assignments/score/{quiz_id}', [StudentQuizController::class, 'showAllResultByGuru'])->name('teacher.quizzes.showAllResultByGuru');
+    Route::get('quiz', [StudentQuizController::class, 'index']);
+    Route::get('quiz/score/{quiz_id}', [StudentQuizController::class, 'showAllResultByGuru'])->name('teacher.quizzes.showAllResultByGuru');
+
+    Route::resource('assignment', AssignmentController::class);
+    Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
 
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
