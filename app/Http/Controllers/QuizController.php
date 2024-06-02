@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use App\Models\Questions;
 use App\Models\Materi;
+use App\Models\QuizAttempts;
 use App\Models\Quizzes;
+use App\Models\UserAnswers;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -24,6 +26,7 @@ class QuizController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
 
         $request->validate([
             'materi_id' => 'required|exists:materi,id',
@@ -35,6 +38,7 @@ class QuizController extends Controller
         Quizzes::create([
             'materi_id' => $request->materi_id,
             'title' => $request->title,
+            'timer' => $request->timer,
         ]);
 
 
@@ -51,11 +55,12 @@ class QuizController extends Controller
     {
         $quiz = Quizzes::findOrFail($id);
         $materis = Materi::all();
-        return view('quizzes.edit', compact('quiz', 'materis'));
+        return view('pages.edit-kuis', compact('quiz', 'materis'));
     }
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'materi_id' => 'required|exists:materi,id',
             'title' => 'required|string|max:255',
@@ -65,6 +70,8 @@ class QuizController extends Controller
         $quiz->update([
             'materi_id' => $request->materi_id,
             'title' => $request->title,
+            'timer' => $request->timer,
+
         ]);
 
         return redirect()->route('quizzes.index')->with('success', 'Quiz updated successfully.');
@@ -72,8 +79,43 @@ class QuizController extends Controller
 
     public function destroy($id)
     {
-        $quiz = Quizzes::findOrFail($id);
-        $quiz->delete();
+        // dd($id);
+        // $quiz = Quizzes::findOrFail($id);
+        // $quiz->delete();
+        $getQuestion = Questions::where('quizzes_id', '=', $id)->first();
+
+        if ($getQuestion) {
+            $getQuizAttempt = QuizAttempts::where('quizzes_id', '=', $id)->first();
+            // dd($getQuizAttempt);
+            if ($getQuizAttempt) {
+                $deleteUserAnswer = UserAnswers::where('quiz_attempts_id', $getQuizAttempt->id)->delete();
+
+                if ($deleteUserAnswer) {
+                    $deleteQuizAttempt = QuizAttempts::where('quizzes_id', '=', $id)->delete();
+                    if ($deleteQuizAttempt) {
+
+                        $deleteQuestion = Questions::where('quizzes_id', $id)->delete();
+
+                        if ($deleteQuestion) {
+                            Quizzes::where('id', $id)->delete();
+                            return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+                        }
+                    }
+                }
+            } else {
+                $deleteQuestion = Questions::where('quizzes_id', $id)->delete();
+
+                if ($deleteQuestion) {
+                    Quizzes::where('id', $id)->delete();
+                    return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+                }
+            }
+        } else {
+            Quizzes::where('id', $id)->delete();
+            return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+        }
+
+
 
         return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
     }
