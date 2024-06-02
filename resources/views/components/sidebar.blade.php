@@ -27,7 +27,11 @@
                     </li>
                     <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
-                            <span>Assignments</span></a>
+                            <span>Quiz</span></a>
+                    </li>
+                    <li class="{{ Request::is('assignment') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
+                            <span>Assignment</span></a>
                     </li>
                 @endif
                 {{-- <li class="menu-header">Dashboard</li> --}}
@@ -72,8 +76,8 @@
                             <li class="{{ Request::is('teacher/assignment') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('teacher/assignment') }}">Manage Assignment</a>
                             </li>
-                            <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('transparent-sidebar') }}">Result</a>
+                            <li class="{{ Request::is('submission/') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">Result</a>
                             </li>
 
                         </ul>
