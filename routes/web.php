@@ -64,6 +64,11 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::post('quizzes/{id}', [StudentQuizController::class, 'submitQuiz'])->name('student.quizzes.submit');
     Route::get('quizzes/{id}/result/{attempt_id}', [StudentQuizController::class, 'showResult'])->name('student.quizzes.result');
     Route::get('quizzes/{user_id}/score/{quiz_id}', [StudentQuizController::class, 'showResultByUser'])->name('student.quizzes.resultByUser');
+
+
+    Route::get('assignment', [AssignmentController::class, 'indexAssignmentMurid']);
+    Route::get('assignment/submission/{id}', [AssignmentController::class, 'edit']);
+    Route::post('assignment/submission/{id}/submit', [AssignmentController::class, 'submitSubmission'])->name('student.submission-assignment');
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
@@ -77,6 +82,8 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 
     // Quiz
     Route::resource('quizzes', QuizController::class);
+    Route::get('quizzes/edit/{id}', [QuizController::class, 'edit']);
+    Route::put('quizzes/update/{id}', [QuizController::class, 'update']);
     Route::get('quizzes/{quiz}/questions/create', [QuizController::class, 'createQuestion'])->name('questions.create');
     Route::post('quizzes/{quiz}/questions', [QuizController::class, 'storeQuestion'])->name('questions.store');
     Route::get('quizzes/{quiz}/questions/{question}/edit', [QuizController::class, 'editQuestion'])->name('questions.edit');
@@ -91,6 +98,9 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 
     Route::resource('assignment', AssignmentController::class);
     Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
+    Route::get('assignments/submission/', [AssignmentController::class, 'indexAssignmentMurid']);
+    Route::get('assignments/submission/{id}', [AssignmentController::class, 'viewSubmissions']);
+
 
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
