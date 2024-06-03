@@ -54,10 +54,10 @@ use Illuminate\Support\Str;
                                                     <div class="d-flex">
                                                         <a href="{{ route('quizzes.show', $list->id) }}"
                                                             class="btn btn-info mr-4">Detail</a>
-                                                        <a href="materi/{{ $list->id }}/edit"
+                                                        <a href="quizzes/edit/{{ $list->id }}"
                                                             class="btn btn-success mr-4">Edit</a>
                                                         <form class="" method="POST"
-                                                            action="/teacher/materi/{{ $list->id }}">
+                                                            action="/teacher/quizzes/{{ $list->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
                                                             <button class="btn btn-danger">Delete</button>
