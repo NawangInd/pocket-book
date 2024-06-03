@@ -48,10 +48,6 @@
                                                     <option value="{{ $list->id }}">{{ $list->judul }}</option>
                                                 @endforeach
 
-
-                                                {{-- <option>Tech</option>
-                                                <option>News</option>
-                                                <option>Political</option> --}}
                                             </select>
                                         </div>
                                     </div>

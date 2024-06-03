@@ -54,6 +54,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
+                                        <label class="">Timer</label>
+                                        <div class=" ">
+                                            <input type="number" class="form-control" name="timer">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
                                         <div class="">
                                             <button class="btn btn-primary" type="submit">Publish</button>
                                         </div>
