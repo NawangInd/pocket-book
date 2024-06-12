@@ -71,7 +71,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-9 col-md-12 col-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header flex-column align-items-start ">
                         <div class="d-flex flex-column">
                             <h1>Assignments</h1>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-12 col-sm-12">
+                {{-- <div class="col-lg-3 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Leaderboard</h4>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
 

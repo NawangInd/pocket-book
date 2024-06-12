@@ -39,7 +39,7 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Material</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="materi_id">
                                                 <option value="" disabled selected>Choose Material</option>

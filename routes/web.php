@@ -8,6 +8,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentQuizController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +101,9 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
     Route::get('assignments/submission/', [AssignmentController::class, 'indexAssignmentMurid']);
     Route::get('assignments/submission/{id}', [AssignmentController::class, 'viewSubmissions']);
+
+    Route::get('profile', [UserController::class, 'index']);
+    Route::put('profile', [UserController::class, 'update']);
 
 
 
@@ -311,9 +315,9 @@ Route::get('/features-post-create', function () {
 Route::get('/features-post', function () {
     return view('pages.features-post', ['type_menu' => 'features']);
 });
-Route::get('/profile', function () {
-    return view('pages.profile', ['type_menu' => 'features']);
-});
+// Route::get('/profile', function () {
+//     return view('pages.profile', ['type_menu' => 'features']);
+// });
 Route::get('/features-settings', function () {
     return view('pages.features-settings', ['type_menu' => 'features']);
 });

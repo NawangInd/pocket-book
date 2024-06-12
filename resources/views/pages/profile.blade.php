@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Hi, Ujang!</h2>
+                <h2 class="section-title text-capitalize">Hi, {{ $user->nama_lengkap }}!</h2>
                 <p class="section-lead">
                     Change information about yourself on this page.
                 </p>
@@ -33,9 +33,9 @@
 
                             </div>
                             <div class="profile-widget-description">
-                                <div class="profile-widget-name">Ujang Maman <div
+                                <div class="profile-widget-name">{{ $user->nama_lengkap }} <div
                                         class="text-muted d-inline font-weight-normal">
-                                        <div class="slash"></div> Web Developer
+                                        <div class="slash"></div> {{ $user->role }}
                                     </div>
                                 </div>
 
@@ -45,63 +45,59 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                            <form method="post" class="needs-validation" novalidate="">
+                            <form class="form"
+                                action="{{ Session('user')['role'] == 'Guru' ? '/teacher/profile' : '/student/profile' }}"
+                                method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                                 <div class="card-header">
                                     <h4>Edit Profile</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group col-md-6 col-12">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control" value="Ujang" required="">
+                                        <div class="form-group col-12">
+                                            <input type="text" class="form-control" value="{{ $user->id }}"
+                                                required="" hidden name="id">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control" value="{{ $user->nama_lengkap }}"
+                                                required="" name="nama_lengkap">
                                             <div class="invalid-feedback">
-                                                Please fill in the first name
+                                                Please fill in the name
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-6 col-12">
+                                        {{-- <div class="form-group col-md-6 col-12">
                                             <label>Last Name</label>
                                             <input type="text" class="form-control" value="Maman" required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the last name
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-7 col-12">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" value="ujang@maman.com"
-                                                required="">
+                                            <input type="email" class="form-control" value="{{ $user->email }}"
+                                                required="" name="email">
                                             <div class="invalid-feedback">
                                                 Please fill in the email
                                             </div>
                                         </div>
                                         <div class="form-group col-md-5 col-12">
-                                            <label>Phone</label>
-                                            <input type="tel" class="form-control" value="">
+                                            <label>Identification Number</label>
+                                            <input type="tel" class="form-control" value="{{ $user->nomor_induk }}"
+                                                name="nomor_induk">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-12">
-                                            <label>Bio</label>
-                                            <textarea class="form-control summernote-simple">Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.</textarea>
+                                            <label>Adrress</label>
+                                            <textarea class="form-control" data-height="150" name="alamat">{{ $user->alamat }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-12 mb-0">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" name="remember" class="custom-control-input"
-                                                    id="newsletter">
-                                                <label class="custom-control-label" for="newsletter">Subscribe to
-                                                    newsletter</label>
-                                                <div class="text-muted form-text">
-                                                    You will get new information about products, offers and promotions
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary">Save Changes</button>
+                                    <button class="btn btn-primary" type="submit">Save Changes</button>
                                 </div>
                             </form>
                         </div>

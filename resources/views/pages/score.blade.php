@@ -51,45 +51,46 @@
                     @endif
 
                     <div class="col-12 ">
-                        @if (Session('user')['role'] == 'Murid')
-                            <div class="section-header">
+                        @if (Session('user')['role'] == 'Guru')
+                            {{-- <div class="section-header">
                                 <h1>Leaderboard</h1>
 
+                            </div> --}}
+
+
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+
+                                    <table class="table-striped table-md table">
+                                        <tr>
+                                            <th>Ranking</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Nilai</th>
+                                            {{-- <th>Created By</th> --}}
+                                            {{-- <th>Action</th> --}}
+                                        </tr>
+                                        <?php $no = 1; ?>
+
+                                        @foreach ($listQuizAttempt as $list)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>{{ $list->nama_lengkap }}</td>
+
+                                                <td>
+                                                    {{ $list->score }}
+                                                </td>
+
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+
+
+                                    </table>
+                                </div>
                             </div>
                         @endif
 
-
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-
-                                <table class="table-striped table-md table">
-                                    <tr>
-                                        <th>Ranking</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Nilai</th>
-                                        {{-- <th>Created By</th> --}}
-                                        {{-- <th>Action</th> --}}
-                                    </tr>
-                                    <?php $no = 1; ?>
-
-                                    @foreach ($listQuizAttempt as $list)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ $list->nama_lengkap }}</td>
-
-                                            <td>
-                                                {{ $list->score }}
-                                            </td>
-
-                                        </tr>
-                                        <?php $no++; ?>
-                                    @endforeach
-
-
-                                </table>
-                            </div>
-                        </div>
-                        <div class="card-footer text-right">
+                        {{-- <div class="card-footer text-right">
                             <nav class="d-inline-block">
                                 <ul class="pagination mb-0">
                                     <li class="page-item disabled">
@@ -107,7 +108,7 @@
                                     </li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

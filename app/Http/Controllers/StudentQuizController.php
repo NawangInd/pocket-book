@@ -13,7 +13,7 @@ class StudentQuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quizzes::with('materi')->get();
+        $quizzes = Quizzes::join('materi', 'materi.id', '=', 'quizzes.materi_id')->get();
         return view('pages.kuis', compact('quizzes'));
     }
 

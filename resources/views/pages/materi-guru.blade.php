@@ -38,7 +38,7 @@ use Illuminate\Support\Str;
                                         <tr>
                                             <th>#</th>
                                             <th>Judul</th>
-                                            <th>Deskripsi</th>
+                                            {{-- <th>Deskripsi</th> --}}
                                             <th>Created By</th>
                                             <th>Action</th>
                                         </tr>
@@ -49,9 +49,10 @@ use Illuminate\Support\Str;
                                                 <td>{{ $no }}</td>
                                                 <td>{{ $list->judul }}</td>
 
-                                                <td>
+                                                {{-- <td>
                                                     {!! nl2br(htmlspecialchars_decode(Str::limit($list->deskripsi, 1000))) !!}
-                                                </td>
+
+                                                </td> --}}
                                                 <td>
                                                     {{ $list->nama_lengkap }}
                                                     {{-- <div class="badge badge-success">Active</div> --}}

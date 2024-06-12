@@ -131,19 +131,49 @@ class MateriController extends Controller
     {
         // dd($request->all());
         if ($request) {
-            if ($request->hasFile('gambar')) {
+            if ($request->hasFile('gambar') && $request->hasFile('file')) {
 
-                // $getPegawaiBaru = Pegawai::orderBy('created_at', 'desc')->first();
-                // $getKonfigCuti = Konfig_cuti::where('tahun',(new \DateTime())->format('Y'))->first();
-                // $request->file('image')->move('img/materi', $request->file('gambar')->getClientOriginalName());
-                $fileName = $request->file('gambar')->getClientOriginalName();
-                $request->file('gambar')->move('img/materi', $fileName);
+                $gambarName = $request->file('gambar')->getClientOriginalName();
+                $request->file('gambar')->move('img/materi', $gambarName);
+
+                $fileName = $request->file('file')->getClientOriginalName();
+                $request->file('file')->move('file_upload/materi', $fileName);
 
                 $materi = new Materi;
                 $materi->judul = $request->judul;
                 $materi->user_id = 2;
                 $materi->deskripsi = $request->deskripsi;
-                $materi->gambar = $request->file('gambar')->getClientOriginalName();
+                $materi->gambar = $gambarName;
+                $materi->file = $fileName;
+                $materi->created_at = Carbon::now();
+                $materi->updated_at = Carbon::now();
+
+
+                if ($materi->save()) {
+
+                    $notifikasi = new Notifikasi;
+                    $notifikasi->role = "Murid";
+                    $notifikasi->judul = "Materi baru dengan judul '" . $request->judul  . "' telah diunggah, yuk pelajari !!!";
+                    $notifikasi->is_seen = "N";
+                    $notifikasi->created_at = Carbon::now();
+                    $notifikasi->updated_at = Carbon::now();
+
+                    $notifikasi->save();
+
+                    return redirect('/teacher/materi');
+                }
+                return redirect('/teacher/materi');
+            } elseif ($request->hasFile('gambar')) {
+
+                $gambarName = $request->file('gambar')->getClientOriginalName();
+                $request->file('gambar')->move('img/materi', $gambarName);
+
+
+                $materi = new Materi;
+                $materi->judul = $request->judul;
+                $materi->user_id = 2;
+                $materi->deskripsi = $request->deskripsi;
+                $materi->gambar = $gambarName;
                 $materi->created_at = Carbon::now();
                 $materi->updated_at = Carbon::now();
 
@@ -195,11 +225,33 @@ class MateriController extends Controller
         // $karyawan->image=$request->image;
 
         // if ($materi->save()) {
-        if ($request->hasFile('gambar')) {
-            $fileName = $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->move('img/materi', $fileName);
+        if ($request->hasFile('gambar') && $request->hasFile('file')) {
+            $gambarName = $request->file('gambar')->getClientOriginalName();
+            $request->file('gambar')->move('img/materi', $gambarName);
 
-            $materi->gambar = $fileName;
+            $fileName = $request->file('file')->getClientOriginalName();
+            $request->file('file')->move('file_upload/materi', $fileName);
+
+            $materi->gambar = $gambarName;
+            $materi->file = $fileName;
+
+            $materi->save();
+            return redirect('/teacher/materi');
+        } elseif ($request->hasFile('gambar')) {
+            $gambarName = $request->file('gambar')->getClientOriginalName();
+            $request->file('gambar')->move('img/materi', $gambarName);
+
+
+            $materi->gambar = $gambarName;
+
+            $materi->save();
+            return redirect('/teacher/materi');
+        } elseif ($request->hasFile('file')) {
+            $fileName = $request->file('file')->getClientOriginalName();
+            $request->file('file')->move('file_upload/materi', $fileName);
+
+            $materi->file = $fileName;
+
             $materi->save();
             return redirect('/teacher/materi');
         } else {

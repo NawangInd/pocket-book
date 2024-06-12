@@ -55,11 +55,29 @@
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <div id="image-preview" class="image-preview">
+                                            {{-- <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="gambar" id="image-upload"
                                                     value="{{ $materi->gambar }}" />
+                                            </div> --}}
+                                            <div id="image-preview" class="image-preview"
+                                                style="background-image: url('{{ asset('img/materi/' . $materi->gambar) }}') ; background-size: cover;
+                                            background-position: center center;">
+                                                <label for="image-upload" id="image-label">Choose Thumbnail</label>
+                                                <input type="file" name="gambar" id="image-upload"
+                                                    value="{{ asset('img/materi/' . $materi->gambar) }}" />
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Dokumen
+                                            Tambahan (PPT / PDF)</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
+                                                class="btn btn-primary btn-md mb-3" target="_blank">
+                                                View File
+                                            </a>
+                                            <input type="file" class="form-control" name="file">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
