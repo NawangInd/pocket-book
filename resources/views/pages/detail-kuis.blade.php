@@ -56,6 +56,7 @@ use Illuminate\Support\Str;
                                                         <li>B. {{ $question->option_b }}</li>
                                                         <li>C. {{ $question->option_c }}</li>
                                                         <li>D. {{ $question->option_d }}</li>
+                                                        <li>E. {{ $question->option_e }}</li>
                                                     </ul>
 
                                                     <p><b>

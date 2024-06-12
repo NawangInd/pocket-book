@@ -62,9 +62,9 @@
                             <li class="{{ Request::is('teacher/quizzes') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('teacher/quizzes') }}">Quiz</a>
                             </li>
-                            <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
+                            {{-- <li class="{{ Request::is('transparent-sidebar') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('transparent-sidebar') }}">Questions & Answer</a>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </li>
