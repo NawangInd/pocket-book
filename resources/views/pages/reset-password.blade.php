@@ -35,23 +35,35 @@
                         </div>
 
 
-                        <form method="post" action="/login-action" class="needs-validation" novalidate="">
+                        <form method="post" action="/reset-password-action" class="needs-validation" novalidate="">
                             @csrf
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                     required autofocus>
                                 <div class="invalid-feedback">
                                     Please fill in your email
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <div class="d-block">
                                     <label for="password" class="control-label">Password</label>
                                 </div>
+                                <input id="email" type="hidden" class="form-control" name="email" tabindex="2"
+                                    required hidden value="{{ $user->email }}">
                                 <input id="password" type="password" class="form-control" name="password"
                                     tabindex="2" required>
+                                <div class="invalid-feedback">
+                                    please fill in your password
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-block">
+                                    <label for="confirm_password" class="control-label">Confirm Password</label>
+                                </div>
+                                <input id="confirm_password" type="password" class="form-control"
+                                    name="confirm_password" tabindex="2" required>
                                 <div class="invalid-feedback">
                                     please fill in your password
                                 </div>
@@ -66,12 +78,12 @@
                             </div> --}}
 
                             <div class="form-group ">
-                                <a href="/forgot-password" class="float-left mb-3">
+                                {{-- <a href="auth-forgot-password.html" class="float-left mb-3">
                                     Forgot Password?
-                                </a>
+                                </a> --}}
                                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right w-100 "
                                     tabindex="4">
-                                    Login
+                                    Submit
                                 </button>
                             </div>
                             {{-- 

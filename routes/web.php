@@ -38,6 +38,10 @@ Route::get('/login-student', [LoginController::class, 'index_student'])->name('l
 Route::get('/login-teacher', [LoginController::class, 'index_teacher'])->name('login-teacher');
 Route::get('/logout-action', [LoginController::class, 'logout_action']);
 
+Route::get('/forgot-password', [UserController::class, 'forgot']);
+Route::post('/forgot-password-action', [UserController::class, 'forgot_action']);
+Route::post('/reset-password-action', [UserController::class, 'reset_action']);
+
 
 
 Route::post('/login-action', [LoginController::class, 'login_action']);

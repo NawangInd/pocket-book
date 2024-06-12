@@ -18,16 +18,7 @@ class UserController extends Controller
     {
         $id = Session('user')['id'];
 
-        // dd($role);
-        // if ($role == 'Guru') {
-        //     $newest_notifikasi = Notifikasi::where('role', '=', 'Guru')->orderBy('id', 'desc')->get();
 
-        //     return view('pages.notification', compact('newest_notifikasi'));
-        // } else {
-        //     $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->get();
-
-        //     return view('pages.notification', compact('newest_notifikasi'));
-        // }
         $user = User::where("id", "=", $id)->first();
 
         // dd($profil);
@@ -59,5 +50,39 @@ class UserController extends Controller
 
         // dd($data);
         return view('pages.dashboard', compact('newest_notifikasi'));
+    }
+
+    public function forgot()
+    {
+        return view('pages.forgot-password');
+    }
+
+    public function forgot_action(Request $request)
+    {
+        // dd($request->all());
+
+        $user = User::where('email', '=', $request->email)->first();
+        if ($user) {
+            return view('pages.reset-password', compact('user'));
+        } else {
+            return view('pages.forgot-password');
+        }
+    }
+
+    public function reset_action(Request $request)
+    {
+        // dd($request->all());
+        if ($request->confirm_password == $request->password) {
+            $user = User::where('email', '=', $request->email)->first();
+            if ($user) {
+                $user->password = $request->password;
+                $user->save();
+
+
+                return view('pages.login');
+            } else {
+                return view('pages.forgot-password');
+            }
+        }
     }
 }

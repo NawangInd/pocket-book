@@ -67,9 +67,9 @@
                             </div> --}}
 
                             <div class="form-group ">
-                                {{-- <a href="auth-forgot-password.html" class="float-left mt-3">
+                                <a href="/forgot-password" class="float-left mb-3">
                                     Forgot Password?
-                                </a> --}}
+                                </a>
                                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right w-100 "
                                     tabindex="4" name="submit">
                                     Login

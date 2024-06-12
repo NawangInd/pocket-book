@@ -24,7 +24,7 @@ use App\Models\QuizAttempts;
 
             <div class="section-body">
 
-                <h2 class="section-title">All Quizs</h2>
+                <h2 class="section-title">All Quiz</h2>
                 <div class="row">
 
                     @foreach ($quizzes as $list)
