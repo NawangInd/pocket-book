@@ -73,10 +73,17 @@
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Dokumen
                                             Tambahan (PPT / PDF)</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
-                                                class="btn btn-primary btn-md mb-3" target="_blank">
-                                                View File
-                                            </a>
+                                            @if ($materi->file)
+                                                <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
+                                                    class="btn btn-primary btn-md mb-3" target="_blank">
+                                                    View File
+                                                </a>
+                                            @else
+                                                <button class="btn btn-secondary mb-3" disabled>
+                                                    <i>Tidak ada File Tambahan</i>
+                                                </button>
+                                            @endif
+
                                             <input type="file" class="form-control" name="file">
                                         </div>
                                     </div>

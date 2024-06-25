@@ -42,30 +42,30 @@
                                         <div class="form-group">
                                             <h6 class="form-label text-dark mb-4">{{ $no . '. ' . $question->question }}
                                             </h6>
-                                            <div class="selectgroup w-100">
+                                            <div class="row w-100">
                                                 <!-- Hidden input to ensure a value is always sent for each question -->
                                                 <input type="hidden" name="question_{{ $question->id }}" value="">
-                                                <label class="selectgroup-item">
+                                                <label class="col-12 w-100">
                                                     <input type="radio" name="question_{{ $question->id }}" value="A"
                                                         class="selectgroup-input">
                                                     <span class="selectgroup-button">A. {{ $question->option_a }}</span>
                                                 </label>
-                                                <label class="selectgroup-item">
+                                                <label class="col-12 w-100">
                                                     <input type="radio" name="question_{{ $question->id }}"
                                                         value="B" class="selectgroup-input">
                                                     <span class="selectgroup-button">B. {{ $question->option_b }}</span>
                                                 </label>
-                                                <label class="selectgroup-item">
+                                                <label class="col-12 w-100">
                                                     <input type="radio" name="question_{{ $question->id }}"
                                                         value="C" class="selectgroup-input">
                                                     <span class="selectgroup-button">C. {{ $question->option_c }}</span>
                                                 </label>
-                                                <label class="selectgroup-item">
+                                                <label class="col-12 w-100">
                                                     <input type="radio" name="question_{{ $question->id }}"
                                                         value="D" class="selectgroup-input">
                                                     <span class="selectgroup-button">D. {{ $question->option_d }}</span>
                                                 </label>
-                                                <label class="selectgroup-item">
+                                                <label class="col-12 w-100">
                                                     <input type="radio" name="question_{{ $question->id }}"
                                                         value="E" class="selectgroup-input">
                                                     <span class="selectgroup-button">E. {{ $question->option_e }}</span>

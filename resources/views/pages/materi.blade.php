@@ -21,7 +21,7 @@
 
                 <h2 class="section-title">All Materials</h2>
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    {{-- <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                         <article class="article article-style-b">
                             <div class="article-header">
                                 <div class="article-image" data-background="{{ asset('img/news/img13.jpg') }}">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </article>
-                    </div>
+                    </div> --}}
                     @foreach ($data as $list)
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                             <article class="article article-style-b">

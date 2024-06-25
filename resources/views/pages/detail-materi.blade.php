@@ -18,6 +18,19 @@
             </div>
 
             <div class="section-body d-flex justify-content-center w-100">
+                <div class="w-25 bg-white mr-2 px-4 py-3">
+                    <h6>Lihat File Tambahan (PPT / PDF)</h6>
+                    @if ($materi->file)
+                        <a href="{{ asset('file_upload/materi/' . $materi->file) }}" class="btn btn-primary btn-md mb-3"
+                            target="_blank">
+                            View File
+                        </a>
+                    @else
+                        <button class="btn btn-secondary mb-3" disabled>
+                            <i>Tidak ada File Tambahan</i>
+                        </button>
+                    @endif
+                </div>
                 <div class=" bg-white px-5 w-75 ">
                     {!! nl2br(htmlspecialchars_decode($materi->deskripsi)) !!}
                 </div>

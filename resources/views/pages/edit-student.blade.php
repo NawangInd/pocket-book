@@ -83,7 +83,9 @@
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <div id="image-preview" class="image-preview">
+                                            <div id="image-preview" class="image-preview"
+                                                style="background-image: url('{{ asset('img/murid/' . $murid->gambar) }}') ; background-size: cover;
+                                                background-position: center center;">
                                                 <label for="image-upload" id="image-label">Choose File</label>
                                                 <input type="file" name="gambar" id="image-upload"
                                                     value="{{ $murid->gambar }}" />
