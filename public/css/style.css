@@ -394,7 +394,7 @@ select.form-control:not([size]):not([multiple]) {
   border-style: solid;
   display: flex;
   /* padding: 0 2px; */
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   text-align: center;
   padding: 3rem 1rem;
@@ -405,10 +405,11 @@ select.form-control:not([size]):not([multiple]) {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  font-size: 13px;
+  font-size: 14px;
+  color: black;
   /* min-width: 2.375rem;
   line-height: 36px; */
-  width: 200px !important;
+  /* width: 200px !important; */
   height: 10vh !important;
 }
 

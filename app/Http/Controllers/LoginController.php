@@ -76,13 +76,18 @@ class LoginController extends Controller
         ])->first();
 
         // dd($admin);
+        if ($admin) {
 
-        $check = $this->checkUser($request, $admin, $admin->role);
-        if ($check != null) {
-            return $check;
+            $check = $this->checkUser($request, $admin, $admin->role);
+            if ($check != null) {
+                return $check;
+            }
+
+            return redirect('/')->with('failed', 'Data User Tidak Ditemukan');
+        } else {
+
+            return redirect('/login')->with('failed', 'Data User Tidak Ditemukan');
         }
-
-        return redirect('/')->with('failed', 'Data User Tidak Ditemukan');
     }
 
     private function checkUser($request, $user, $role)

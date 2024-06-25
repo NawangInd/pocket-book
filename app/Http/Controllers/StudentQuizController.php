@@ -13,13 +13,18 @@ class StudentQuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quizzes::join('materi', 'materi.id', '=', 'quizzes.materi_id')->get();
+        $quizzes = Quizzes::join('materi', 'materi.id', '=', 'quizzes.materi_id')->select('quizzes.*', 'materi.id as id_materi')->get();
         return view('pages.kuis', compact('quizzes'));
     }
 
     public function showQuiz($id)
     {
+        // dd($id);
         $quiz = Quizzes::with('questions')->findOrFail($id);
+        // $quiz = Quizzes::all;
+
+        // dd($quiz);
+
         return view('pages.soal-kuis', compact('quiz'));
     }
 
