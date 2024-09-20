@@ -44,31 +44,31 @@
                                     <div class="form-group ">
                                         <label class="">Option A</label>
                                         <div class=" ">
-                                            <input type="text" class="form-control" name="option_a">
+                                            <textarea class="form-control" name="option_a"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label class="">Option B</label>
                                         <div class=" ">
-                                            <input type="text" class="form-control" name="option_b">
+                                            <textarea class="form-control" name="option_b"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label class="">Option C</label>
                                         <div class=" ">
-                                            <input type="text" class="form-control" name="option_c">
+                                            <textarea class="form-control" name="option_c"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label class="">Option D</label>
                                         <div class=" ">
-                                            <input type="text" class="form-control" name="option_d">
+                                            <textarea class="form-control" name="option_d"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label class="">Option E</label>
                                         <div class=" ">
-                                            <input type="text" class="form-control" name="option_e">
+                                            <textarea class="form-control" name="option_e"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

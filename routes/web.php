@@ -103,6 +103,8 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 
     Route::resource('assignment', AssignmentController::class);
     Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
+    Route::delete('assignment/{id}', [AssignmentController::class, 'destroy']);
+
     Route::get('assignments/submission/', [AssignmentController::class, 'indexAssignmentMurid']);
     Route::get('assignments/submission/{id}', [AssignmentController::class, 'viewSubmissions']);
 
