@@ -92,8 +92,11 @@ class AssignmentController extends Controller
 
                 //     return redirect('/teacher/materi');
                 // }
+                // dd($assignment->save());
 
                 $assignment->save();
+
+
                 return redirect('/teacher/assignment');
             }
             // ->with('success', 'Berhasil membuat Materi');
@@ -217,7 +220,12 @@ class AssignmentController extends Controller
     {
         // $assignment = Assignment::findOrFail($id);
         $getAssignmentSubmission = AssignmentSubmission::where('assignment_id', '=', $id)->get();
-        if ($getAssignmentSubmission) {
+
+        // dd($getAssignmentSubmission);
+
+        if ($getAssignmentSubmission->count() > 0) {
+            // dd($id);
+
             $deleteAssignmentSubmission = AssignmentSubmission::where('assignment_id', '=', $id)->delete();
 
             if ($deleteAssignmentSubmission) {
@@ -225,6 +233,8 @@ class AssignmentController extends Controller
                 return redirect('/teacher/assignment');
             }
         } else {
+            // dd('tes');
+
             Assignment::where('id', $id)->delete();
             return redirect('/teacher/assignment');
         }
