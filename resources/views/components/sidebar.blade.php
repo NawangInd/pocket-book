@@ -33,6 +33,11 @@
                         <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
                             <span>Assignment</span></a>
                     </li>
+                    <li class="{{ Request::is('groups') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/groups') }}">
+
+                            <i class="fas fa-file-pen"></i> <span>Groups</span></a>
+                    </li>
                 @endif
                 {{-- <li class="menu-header">Dashboard</li> --}}
 
@@ -79,6 +84,20 @@
                             <li class="{{ Request::is('submission/') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">Result</a>
                             </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                class="fas fa-columns"></i>
+                            <span>Manage Groups</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{ Request::is('teacher/groups') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('teacher/groups') }}">Groups</a>
+                            </li>
+                            {{-- <li class="{{ Request::is('submission/') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">Result</a>
+                            </li> --}}
 
                         </ul>
                     </li>
