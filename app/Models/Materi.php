@@ -35,4 +35,10 @@ class Materi extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    // Relasi dengan model Group
+    public function groups()
+    {
+        return $this->hasMany(Group::class, 'materi_id');
+    }
 }
