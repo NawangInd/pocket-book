@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\NotificationController;
@@ -70,6 +71,10 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::get('quizzes/{id}/result/{attempt_id}', [StudentQuizController::class, 'showResult'])->name('student.quizzes.result');
     Route::get('quizzes/{user_id}/score/{quiz_id}', [StudentQuizController::class, 'showResultByUser'])->name('student.quizzes.resultByUser');
 
+    Route::get('/groups', [GroupController::class, 'indexMurid']);
+    Route::get('/groups/{id}/detail', [GroupController::class, 'detailGroup']);
+
+
 
     Route::get('assignment', [AssignmentController::class, 'indexAssignmentMurid']);
     Route::get('assignment/submission/{id}', [AssignmentController::class, 'edit']);
@@ -112,6 +117,15 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::put('profile', [UserController::class, 'update']);
 
 
+    Route::get('/groups/create', [GroupController::class, 'create'])->name('groups.create');
+    // Route::post('/groups/store', [GroupController::class, 'store'])->name('groups.store');
+    Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
+    route::post('/groups/generate', [GroupController::class, 'generateGroups'])->name('groups.generate');
+    Route::post('/groups/store', [GroupController::class, 'store'])->name('groups.store');
+    Route::get('/groups/{id}/detail', [GroupController::class, 'detailGroup']);
+    route::get('/groups/{id}/edit', [GroupController::class, 'edit'])->name('groups.edit');
+    route::put('/groups/{id}', [GroupController::class, 'update'])->name('groups.update');
+    Route::delete('/groups/{id}', [GroupController::class, 'delete'])->name('groups.delete');
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
 });
